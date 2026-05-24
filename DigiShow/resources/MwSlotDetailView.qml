@@ -13,7 +13,7 @@ Item {
     property int slotIndex: -1
     property bool isEdited: false
 
-    signal slotDetailUpdated
+    signal slotDetailUpdated()
 
     onSlotIndexChanged: {
 

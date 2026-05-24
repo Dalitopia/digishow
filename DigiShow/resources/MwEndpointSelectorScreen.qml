@@ -291,16 +291,16 @@ Item {
                     }
                 }
 
-                CSpinBox {
+                CDoubleSpinBox {
                     id: spinMediaOpacity
 
                     width: 120
                     anchors.left: parent.left
                     anchors.leftMargin: 105
-                    from: 0
-                    to: 100
-                    value: 100
-                    stepSize: 5
+                    realFrom: 0
+                    realTo: 100
+                    realValue: 100
+                    realStepSize: 5
                     unit: "%"
 
                     onValueModified: isModified = true
@@ -315,16 +315,16 @@ Item {
                     }
                 }
 
-                CSpinBox {
+                CDoubleSpinBox {
                     id: spinMediaScale
 
                     width: 120
                     anchors.left: parent.left
                     anchors.leftMargin: 105
-                    from: 0
-                    to: 100
-                    value: 50
-                    stepSize: 5
+                    realFrom: 0
+                    realTo: 100
+                    realValue: 50
+                    realStepSize: 5
                     unit: "%"
 
                     onValueModified: isModified = true
@@ -339,16 +339,16 @@ Item {
                     }
                 }
 
-                CSpinBox {
+                CDoubleSpinBox {
                     id: spinMediaRotation
 
                     width: 120
                     anchors.left: parent.left
                     anchors.leftMargin: 105
-                    from: 0
-                    to: 360
-                    value: 0
-                    stepSize: 1
+                    realFrom: 0
+                    realTo: 360
+                    realValue: 0
+                    realStepSize: 1
                     unit: "º"
 
                     onValueModified: isModified = true
@@ -363,16 +363,16 @@ Item {
                     }
                 }
 
-                CSpinBox {
+                CDoubleSpinBox {
                     id: spinMediaXOffset
 
                     width: 120
                     anchors.left: parent.left
                     anchors.leftMargin: 105
-                    from: 0
-                    to: 100
-                    value: 50
-                    stepSize: 1
+                    realFrom: 0
+                    realTo: 100
+                    realValue: 50
+                    realStepSize: 0.5
                     unit: "%"
 
                     onValueModified: isModified = true
@@ -387,16 +387,16 @@ Item {
                     }
                 }
 
-                CSpinBox {
+                CDoubleSpinBox {
                     id: spinMediaYOffset
 
                     width: 120
                     anchors.left: parent.left
                     anchors.leftMargin: 105
-                    from: 0
-                    to: 100
-                    value: 50
-                    stepSize: 1
+                    realFrom: 0
+                    realTo: 100
+                    realValue: 50
+                    realStepSize: 0.5
                     unit: "%"
 
                     onValueModified: isModified = true
@@ -775,12 +775,12 @@ Item {
     function setEndpointMediaOptions(options) {
 
         var v
-        v = options["mediaFadeIn"];        spinMediaFadeIn.value    = (v === undefined ? 300  : v )
-        v = options["mediaOpacity"];       spinMediaOpacity.value   = (v === undefined ? 100  : v / 100)
-        v = options["mediaScale"];         spinMediaScale.value     = (v === undefined ? 50   : v / 100)
-        v = options["mediaRotation"];      spinMediaRotation.value  = (v === undefined ? 0    : v / 10 )
-        v = options["mediaXOffset"];       spinMediaXOffset.value   = (v === undefined ? 50   : v / 100)
-        v = options["mediaYOffset"];       spinMediaYOffset.value   = (v === undefined ? 50   : v / 100)
+        v = options["mediaFadeIn"];        spinMediaFadeIn.value       = (v === undefined ? 300  : v )
+        v = options["mediaOpacity"];       spinMediaOpacity.realValue  = (v === undefined ? 100  : v / 100)
+        v = options["mediaScale"];         spinMediaScale.realValue    = (v === undefined ? 50   : v / 100)
+        v = options["mediaRotation"];      spinMediaRotation.realValue = (v === undefined ? 0    : v / 10 )
+        v = options["mediaXOffset"];       spinMediaXOffset.realValue  = (v === undefined ? 50   : v / 100)
+        v = options["mediaYOffset"];       spinMediaYOffset.realValue  = (v === undefined ? 50   : v / 100)
 
         // deprecated !!!
         v = options["mediaShowAlone"];     checkMediaAlone.checked  = (v === undefined ? true : v )
@@ -809,11 +809,11 @@ Item {
         var options = {
             mediaAlone:     checkMediaAlone.checked,
             mediaFadeIn:    spinMediaFadeIn.value,
-            mediaOpacity:   spinMediaOpacity.value * 100,
-            mediaScale:     spinMediaScale.value * 100,
-            mediaRotation:  spinMediaRotation.value * 10,
-            mediaXOffset:   spinMediaXOffset.value * 100,
-            mediaYOffset:   spinMediaYOffset.value * 100,
+            mediaOpacity:   spinMediaOpacity.realValue * 100,
+            mediaScale:     spinMediaScale.realValue * 100,
+            mediaRotation:  spinMediaRotation.realValue * 10,
+            mediaXOffset:   spinMediaXOffset.realValue * 100,
+            mediaYOffset:   spinMediaYOffset.realValue * 100,
             mediaRepeat:    checkVideoRepeat.checked,
             mediaVolume:    spinVideoVolume.value * 100,
             mediaSpeed:     spinVideoSpeed.value * 100,

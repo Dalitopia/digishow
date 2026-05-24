@@ -1,0 +1,215 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7.1"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "media": "video1",
+                    "mediaAlone": false,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 2500,
+                    "mediaScript": "",
+                    "mediaSpeed": 2000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 3750,
+                    "mediaYOffset": 6250,
+                    "name": "media1",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "media": "video2",
+                    "mediaAlone": false,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 2500,
+                    "mediaScript": "",
+                    "mediaSpeed": 2500,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 6250,
+                    "mediaYOffset": 6250,
+                    "name": "media2",
+                    "type": "media"
+                },
+                                {
+                    "control": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "media": "video3",
+                    "mediaAlone": false,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 2500,
+                    "mediaScript": "",
+                    "mediaSpeed": 3000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 3750,
+                    "mediaYOffset": 3750,
+                    "name": "media3",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "media": "video4",
+                    "mediaAlone": false,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 2500,
+                    "mediaScript": "",
+                    "mediaSpeed": 3500,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 6250,
+                    "mediaYOffset": 3750,
+                    "name": "media4",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/1.mp4",
+                    "name": "video1",
+                    "type": "video",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/3_playback_control/clips/1.mp4"
+                },
+                {
+                    "file": "clips/2.mp4",
+                    "name": "video2",
+                    "type": "video",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/3_playback_control/clips/2.mp4"
+                },
+                {
+                    "file": "clips/3.mp4",
+                    "name": "video3",
+                    "type": "video",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/3_playback_control/clips/3.mp4"
+                },
+                {
+                    "file": "clips/4.mp4",
+                    "name": "video4",
+                    "type": "video",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/3_playback_control/clips/4.mp4"
+                }
+            ],
+            "mode": "",
+            "name": "screen1",
+            "screen": 0,
+            "type": "screen"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "screen1/media1",
+            "linked": true,
+            "outputInverted": false,
+            "source": "",
+            "title": "( play program 1 )"
+        },
+        {
+            "destination": "screen1/media2",
+            "linked": true,
+            "source": "",
+            "title": "( play program 2 )"
+        },
+        {
+            "destination": "screen1/media3",
+            "linked": true,
+            "source": "",
+            "title": "( play program 3 )"
+        },
+        {
+            "destination": "screen1/media4",
+            "linked": true,
+            "source": "",
+            "title": "( play program 4 )"
+        }
+    ]
+}

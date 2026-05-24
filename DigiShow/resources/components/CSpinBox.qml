@@ -7,6 +7,8 @@ SpinBox {
 
     property string unit: ""
 
+    signal valueModified()
+
     width: 100
     height: 28
     editable: true
@@ -24,8 +26,8 @@ SpinBox {
     function commitEditorText() {
         if (!editor) return // ignore if editor is not initialized
         spinBox.value = spinBox.valueFromText(editor.text)
-        valueModified() // emit signal
         syncEditorText()
+        valueModified() // emit signal
     }
 
     background: Rectangle {

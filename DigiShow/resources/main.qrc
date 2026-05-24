@@ -104,6 +104,7 @@
         <file>components/COptionMenuItem.qml</file>
         <file>components/COptionSpinBox.qml</file>
         <file>components/CSpinBox.qml</file>
+        <file>components/CDoubleSpinBox.qml</file>
         <file>components/CSlider.qml</file>
         <file>components/CRangeSlider.qml</file>
         <file>components/CTextInputBox.qml</file>
