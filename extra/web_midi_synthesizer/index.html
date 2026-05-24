@@ -177,11 +177,16 @@
         <div class="effects-section random-note-section">
             <div class="random-note-panel">
                 <div class="random-note-grid" id="random-note-grid"></div>
-                <div class="random-note-controls">
+                <div class="random-note-controls" style="display: flex; justify-content: center; align-items: center; gap: 30px;">
                     <label>
                         <input type="checkbox" id="random-note-enabled">
                         Enable Random Note
                     </label>
+                    <div class="control-group" style="margin-bottom: 0; display: flex; align-items: center; gap: 10px;">
+                        <label style="margin-bottom: 0; font-weight: normal; font-size: 0.85rem; color: #ccc;">Probability:</label>
+                        <input type="range" id="random-note-prob" min="0" max="100" value="100" style="width: 100px; margin-bottom: 0;">
+                        <span id="random-note-prob-value" style="font-size: 0.85rem; opacity: 1;">100%</span>
+                    </div>
                 </div>
             </div>
         </div>

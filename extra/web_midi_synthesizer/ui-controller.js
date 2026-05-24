@@ -36,6 +36,18 @@ class UIController {
                 }
             });
         }
+        
+        // Bind probability slider
+        const probSlider = document.getElementById('random-note-prob');
+        if (probSlider) {
+            probSlider.addEventListener('input', (e) => {
+                const val = parseInt(e.target.value, 10);
+                if (window.synthEngine) {
+                    window.synthEngine.setRandomNoteProbability(this.currentChannel, val);
+                }
+                this.updateDisplayValue('random-note-prob');
+            });
+        }
     }
 
     toggleRandomNote(semi) {
@@ -394,6 +406,11 @@ class UIController {
         if (enableCb && window.synthEngine) {
             enableCb.checked = window.synthEngine.getRandomNoteEnabled(channelNumber);
         }
+        const probSlider = document.getElementById('random-note-prob');
+        if (probSlider && window.synthEngine) {
+            probSlider.value = window.synthEngine.getRandomNoteProbability(channelNumber);
+            this.updateDisplayValue('random-note-prob');
+        }
     }
 
     resetCurrentChannel() {
@@ -421,7 +438,8 @@ class UIController {
             'reverb-room': 0.5,
             'reverb-damping': 0.4,
             'reverb-mix': 0.5,
-            'random-note-enabled': false
+            'random-note-enabled': false,
+            'random-note-prob': 100
         };
 
         // 1.1 Iterate over all controls and set defaults
@@ -435,6 +453,7 @@ class UIController {
 
         // 2. Random Note: Only 0st (middle button, index=12) ON, rest OFF
         window.synthEngine.randomNoteMasks[ch] = 1 << 12;   // bit12 = 0st
+        window.synthEngine.setRandomNoteProbability(ch, 100);
         // 2.1 Turn all off first
         document.querySelectorAll('.random-note-btn').forEach(btn => btn.classList.remove('active'));
         // 2.2 Then light up 0st
@@ -588,6 +607,9 @@ class UIController {
                 break;
             case 'reverb-damping':
                 displayValue = `${Math.round(value * 100)}%`;
+                break;
+            case 'random-note-prob':
+                displayValue = `${Math.round(value)}%`;
                 break;
             default:
                 displayValue = value;

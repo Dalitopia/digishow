@@ -4,13 +4,15 @@ class SynthEngine {
         this.masterGain = null;
         this.channels = new Map();
         this.analyser = null;
-        // Random Note: channel masks/enabled/mapping stacks
+        // Random Note: channel masks/enabled/probability/mapping stacks
         this.randomNoteMasks = {};
         this.randomNoteEnabled = {};
+        this.randomNoteProbability = {}; // channel -> 0~100
         this.randomNoteMaps = {}; // channel -> { inputNote: [outputNotes...] }
         for (let ch = 1; ch <= 16; ch++) {
             this.randomNoteMasks[ch] = 1 << 12; // Default to 0
             this.randomNoteEnabled[ch] = false;
+            this.randomNoteProbability[ch] = 100; // Default 100%
             this.randomNoteMaps[ch] = new Map();
         }
         this.initializeAudio();
@@ -49,29 +51,33 @@ class SynthEngine {
         if (!this.channels.has(channel)) return;
         // Random Note branch
         if (this.randomNoteEnabled[channel]) {
-            const mask = this.randomNoteMasks[channel];
-            const candidates = [];
-            // 25-bit mask: 0..11→-12..-1, 12→0, 13..24→+1..+12
-            for (let i = 0; i < 25; i++) {
-                if (mask & (1 << i)) {
-                    let semi;
-                    if (i < 12) semi = -(12 - i);
-                    else if (i === 12) semi = 0;
-                    else semi = i - 12;
-                    candidates.push(note + semi);
+            const prob = this.randomNoteProbability[channel] !== undefined ? this.randomNoteProbability[channel] : 100;
+            // Check probability before applying random note
+            if (Math.random() * 100 < prob) {
+                const mask = this.randomNoteMasks[channel];
+                const candidates = [];
+                // 25-bit mask: 0..11→-12..-1, 12→0, 13..24→+1..+12
+                for (let i = 0; i < 25; i++) {
+                    if (mask & (1 << i)) {
+                        let semi;
+                        if (i < 12) semi = -(12 - i);
+                        else if (i === 12) semi = 0;
+                        else semi = i - 12;
+                        candidates.push(note + semi);
+                    }
                 }
-            }
-            if (candidates.length) {
-                const outNote = candidates[Math.floor(Math.random() * candidates.length)];
-                // Record mapping, support multiple inputs mapped to same output
-                const map = this.randomNoteMaps[channel];
-                if (!map.has(note)) map.set(note, []);
-                map.get(note).push(outNote);
-                // Actually play the outNote
-                this.channels.get(channel).noteOn(outNote, velocity);
-                // Notify UI to highlight random note
-                window.dispatchEvent(new CustomEvent('randomNoteOn', { detail: { channel, note: outNote } }));
-                return;
+                if (candidates.length) {
+                    const outNote = candidates[Math.floor(Math.random() * candidates.length)];
+                    // Record mapping, support multiple inputs mapped to same output
+                    const map = this.randomNoteMaps[channel];
+                    if (!map.has(note)) map.set(note, []);
+                    map.get(note).push(outNote);
+                    // Actually play the outNote
+                    this.channels.get(channel).noteOn(outNote, velocity);
+                    // Notify UI to highlight random note
+                    window.dispatchEvent(new CustomEvent('randomNoteOn', { detail: { channel, note: outNote } }));
+                    return;
+                }
             }
         }
         // Original path
@@ -81,18 +87,20 @@ class SynthEngine {
     noteOff(channel, note) {
         if (!this.channels.has(channel)) return;
         const map = this.randomNoteMaps[channel];
-        if (this.randomNoteEnabled[channel] && map.has(note)) {
+        // Ensure noteOff is sent to ALL mapped notes even if randomNoteEnabled was turned off
+        // This handles high-density re-triggers where multiple random notes were generated for the same input note
+        if (map.has(note)) {
             const outs = map.get(note);
             if (outs && outs.length) {
-                const outNote = outs.shift(); // Extract earliest mapping
-                this.channels.get(channel).noteOff(outNote);
-                // Notify UI to turn off random note
-                window.dispatchEvent(new CustomEvent('randomNoteOff', { detail: { channel, note: outNote } }));
-                if (outs.length === 0) map.delete(note); // Clear array if empty
-                return;
+                for (const outNote of outs) {
+                    this.channels.get(channel).noteOff(outNote);
+                    // Notify UI to turn off random note
+                    window.dispatchEvent(new CustomEvent('randomNoteOff', { detail: { channel, note: outNote } }));
+                }
             }
+            map.delete(note); // Clear ALL mappings for this physical key to prevent hanging
         }
-        // Original path
+        // Always execute original path as fallback (safe if note is not playing)
         this.channels.get(channel).noteOff(note);
     }
 
@@ -114,7 +122,7 @@ class SynthEngine {
         }
     }
 
-    // Random Note: UI set mask/enabled
+    // Random Note: UI set mask/enabled/probability
     setRandomNoteMask(channel, mask25) {
         this.randomNoteMasks[channel] = mask25 >>> 0; // Ensure unsigned 25-bit
     }
@@ -123,6 +131,12 @@ class SynthEngine {
     }
     getRandomNoteEnabled(channel) {
         return this.randomNoteEnabled[channel];
+    }
+    setRandomNoteProbability(channel, prob) {
+        this.randomNoteProbability[channel] = Math.max(0, Math.min(100, prob));
+    }
+    getRandomNoteProbability(channel) {
+        return this.randomNoteProbability[channel];
     }
 
     setChannelSettings(channel, settings) {
@@ -410,15 +424,29 @@ class SynthChannel {
     noteOff(note) {
         if (!this.activeNotes.has(note)) return;
         
-        const { oscillator, gainNode, velocityGain } = this.activeNotes.get(note);
+        const { oscillator, gainNode } = this.activeNotes.get(note);
         const now = this.audioContext.currentTime;
         
         // Apply release phase
         const releaseTime = now + this.settings.release;
-        gainNode.gain.exponentialRampToValueAtTime(0.001, releaseTime);
+        
+        try {
+            // Cancel future scheduled events to prevent DOMException on fast re-trigger
+            gainNode.gain.cancelScheduledValues(now);
+            // Anchor the current value to prevent clicks
+            gainNode.gain.setValueAtTime(gainNode.gain.value, now);
+            // Schedule the release ramp
+            gainNode.gain.exponentialRampToValueAtTime(0.001, releaseTime);
+        } catch (e) {
+            console.warn('Audio scheduling error in release phase:', e);
+        }
         
         // Stop oscillator after release completes
-        oscillator.stop(releaseTime);
+        try {
+            oscillator.stop(releaseTime);
+        } catch (e) {
+            // Ignore if already stopped
+        }
         
         this.activeNotes.delete(note);
     }
