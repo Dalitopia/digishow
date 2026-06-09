@@ -200,7 +200,7 @@
   + LFO interface
   + playing feedback signals for audio / video players
   + display media filenames and osc address in the slot list
-  + pulse signal defination
+  + pulse signal definition
 
 */
 

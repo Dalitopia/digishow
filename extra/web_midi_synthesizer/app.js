@@ -224,10 +224,13 @@ class WebSynthApp {
                 const channel = parseInt(match[1]);
                 const channelSettings = settings[channelKey];
                 window.synthEngine.updateChannelSettings(channel, channelSettings);
+                if (window.uiController && channelSettings.randomNoteMask !== undefined) {
+                    window.uiController.randomNoteMasks[channel] = channelSettings.randomNoteMask;
+                }
             }
         });
 
-        // Reload current channel settings
+        // Reload current channel settings (UI + Random Note)
         if (window.uiController) {
             window.uiController.loadChannelSettings(window.uiController.currentChannel);
         }

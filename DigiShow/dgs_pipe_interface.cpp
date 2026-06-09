@@ -446,7 +446,8 @@ void DgsPipeInterface::updateMetadata_()
         labelIdentity = m_interfaceOptions.value("pipeId").toString();
     } else {
         labelType = tr("Virtual Pipe");
-        labelIdentity = m_interfaceOptions.value("tcpPort").toString();
+        labelIdentity = m_interfaceOptions.value("acceptRemote").toInt()==0 ? "" :
+                        ":" + m_interfaceOptions.value("tcpPort").toString();
     }
 
     QString labelComment = m_interfaceOptions.value("comment").toString();

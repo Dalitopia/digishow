@@ -7,8 +7,6 @@ SpinBox {
 
     property string unit: ""
 
-    signal valueModified()
-
     width: 100
     height: 28
     editable: true

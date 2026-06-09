@@ -6,3 +6,6 @@ After writing the RIOC sketch to the Arduino UNO board, run this DigiShow projec
 
 aladdin_micro.dgs
 After writing the RIOC sketch to the Aladdin Micro board, run this DigiShow project to perform the simplest test. Once started, the onboard output signal indicators will show a looping "flowing light" effect.
+
+stepper_control
+Several examples demonstrate how to control stepper motors with DigiShow.

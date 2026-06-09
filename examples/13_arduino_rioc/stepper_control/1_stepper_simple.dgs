@@ -1,0 +1,200 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7.1"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "address": "3",
+                    "enabled": true,
+                    "name": "press1",
+                    "type": "press"
+                },
+                {
+                    "address": "2",
+                    "enabled": true,
+                    "name": "press2",
+                    "type": "press"
+                },
+                {
+                    "address": "1",
+                    "enabled": true,
+                    "name": "press3",
+                    "type": "press"
+                },
+                {
+                    "address": "0",
+                    "enabled": true,
+                    "name": "press4",
+                    "type": "press"
+                },
+                {
+                    "address": "Left",
+                    "enabled": true,
+                    "name": "press5",
+                    "type": "press"
+                },
+                {
+                    "address": "Right",
+                    "enabled": true,
+                    "name": "press6",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "pfm_out2",
+                    "range": 1000,
+                    "type": "pfm_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "digital_out3",
+                    "type": "digital_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "name": "digital_out4",
+                    "type": "digital_out",
+                    "unit": 1
+                }
+            ],
+            "mode": "arduino_uno",
+            "name": "rioc1",
+            "outputInterval": 20,
+            "type": "rioc"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "rioc1/pfm_out2",
+            "linked": true,
+            "outputInverted": false,
+            "title": "PUL ( Speed )"
+        },
+        {
+            "destination": "rioc1/digital_out3",
+            "linked": true,
+            "title": "DIR ( CW / CCW )"
+        },
+        {
+            "destination": "rioc1/digital_out4",
+            "linked": true,
+            "outputInverted": false,
+            "title": "ENA ( On / Off)"
+        },
+        {
+            "bookmarked": true,
+            "linked": true,
+            "title": "Hot Keys"
+        },
+        {
+            "destination": "rioc1/pfm_out2",
+            "linked": true,
+            "outputLow": 1,
+            "source": "hotkey1/press1",
+            "title": "Hi Speed"
+        },
+        {
+            "destination": "rioc1/pfm_out2",
+            "linked": true,
+            "outputHigh": 0.7,
+            "outputLow": 0.7,
+            "source": "hotkey1/press2",
+            "title": "Mid Speed"
+        },
+        {
+            "destination": "rioc1/pfm_out2",
+            "linked": true,
+            "outputHigh": 0.4,
+            "outputLow": 0.4,
+            "source": "hotkey1/press3",
+            "title": "Low Speed"
+        },
+        {
+            "destination": "rioc1/pfm_out2",
+            "linked": true,
+            "outputHigh": 0,
+            "source": "hotkey1/press4",
+            "title": "Stop"
+        },
+        {
+            "destination": "rioc1/digital_out3",
+            "linked": true,
+            "source": "hotkey1/press6",
+            "title": "CW Rotation"
+        },
+        {
+            "destination": "rioc1/digital_out3",
+            "linked": true,
+            "outputInverted": true,
+            "source": "hotkey1/press5",
+            "title": "CCW Rotation"
+        }
+    ]
+}

@@ -348,7 +348,7 @@ Item {
                     realFrom: 0
                     realTo: 360
                     realValue: 0
-                    realStepSize: 1
+                    realStepSize: 0.5
                     unit: "º"
 
                     onValueModified: isModified = true

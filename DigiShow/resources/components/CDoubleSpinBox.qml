@@ -17,8 +17,6 @@ SpinBox {
     readonly property int scaleFactor: Math.round(Math.pow(10, effectiveDecimals))
     property bool syncingValue: false
 
-    signal valueModified()
-
     width: 100
     height: 28
     editable: true

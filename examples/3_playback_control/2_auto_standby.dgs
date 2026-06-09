@@ -266,7 +266,7 @@
     "slots": [
         {
             "destination": "screen1/media3",
-            "envelopeHold": 200,
+            "envelopeHold": 1000,
             "linked": true,
             "source": "pipe1/binary1",
             "title": "Show standby screen on startup"

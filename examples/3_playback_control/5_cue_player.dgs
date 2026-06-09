@@ -382,7 +382,7 @@
                 }
             },
             "destination": "screen1/media13",
-            "envelopeHold": 200,
+            "envelopeHold": 1000,
             "launchDetails": {
                 "launch1": {
                 },

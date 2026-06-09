@@ -1,0 +1,171 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7.1"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "address": "0",
+                    "enabled": true,
+                    "name": "press4",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 9,
+                    "enabled": true,
+                    "initial": 0.5,
+                    "name": "stepper_out2",
+                    "optMode": 2,
+                    "optPosition": 5000,
+                    "optSpeed": 1000,
+                    "range": 10000,
+                    "type": "stepper_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 9,
+                    "control": 2,
+                    "enabled": true,
+                    "name": "stepper_set2",
+                    "type": "stepper_set",
+                    "unit": 1
+                },
+                {
+                    "channel": 9,
+                    "control": 3,
+                    "enabled": true,
+                    "name": "stepper_set4",
+                    "type": "stepper_set",
+                    "unit": 1
+                }
+            ],
+            "mode": "aladdin1",
+            "name": "rioc1",
+            "outputInterval": 20,
+            "type": "rioc"
+        }
+    ],
+    "launches": {
+        "launch1": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "Go to 0"
+        },
+        "launch2": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "Go to 5000"
+        },
+        "launch3": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "Go to 10000"
+        }
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "rioc1/stepper_out2",
+            "launchDetails": {
+                "launch1": {
+                    "outputRange": 10000,
+                    "outputValue": 0
+                },
+                "launch2": {
+                    "outputRange": 10000,
+                    "outputValue": 5000
+                },
+                "launch3": {
+                    "outputRange": 10000,
+                    "outputValue": 10000
+                }
+            },
+            "linked": true,
+            "title": "Change Target Position"
+        },
+        {
+            "destination": "rioc1/stepper_set2",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                }
+            },
+            "linked": true,
+            "title": "Chage Speed"
+        },
+        {
+            "destination": "rioc1/stepper_set4",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                }
+            },
+            "linked": true,
+            "source": "hotkey1/press4",
+            "title": "Stop"
+        }
+    ]
+}

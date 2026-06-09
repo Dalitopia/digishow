@@ -398,19 +398,8 @@ class UIController {
             currentChannelDisplay.textContent = channelNumber;
         }
 
-        // Load current channel settings
+        // Load current channel settings (includes Random Note)
         this.loadChannelSettings(this.currentChannel);
-        // Random Note: refresh buttons and switch after channel change
-        this.updateRandomNoteButtons();
-        const enableCb = document.getElementById('random-note-enabled');
-        if (enableCb && window.synthEngine) {
-            enableCb.checked = window.synthEngine.getRandomNoteEnabled(channelNumber);
-        }
-        const probSlider = document.getElementById('random-note-prob');
-        if (probSlider && window.synthEngine) {
-            probSlider.value = window.synthEngine.getRandomNoteProbability(channelNumber);
-            this.updateDisplayValue('random-note-prob');
-        }
     }
 
     resetCurrentChannel() {
@@ -452,7 +441,9 @@ class UIController {
         });
 
         // 2. Random Note: Only 0st (middle button, index=12) ON, rest OFF
-        window.synthEngine.randomNoteMasks[ch] = 1 << 12;   // bit12 = 0st
+        this.randomNoteMasks[ch] = 1 << 12;
+        window.synthEngine.setRandomNoteMask(ch, 1 << 12);
+        window.synthEngine.setRandomNoteEnabled(ch, false);
         window.synthEngine.setRandomNoteProbability(ch, 100);
         // 2.1 Turn all off first
         document.querySelectorAll('.random-note-btn').forEach(btn => btn.classList.remove('active'));
@@ -534,6 +525,32 @@ class UIController {
         this.updateEffectControls('chorus-enabled');
         this.updateEffectControls('delay-enabled');
         this.updateEffectControls('reverb-enabled');
+
+        // Random Note
+        if (settings.randomNoteMask !== undefined) {
+            this.randomNoteMasks[channelNumber] = settings.randomNoteMask;
+            window.synthEngine.setRandomNoteMask(channelNumber, settings.randomNoteMask);
+        } else {
+            this.randomNoteMasks[channelNumber] = window.synthEngine.randomNoteMasks[channelNumber];
+        }
+        const enableCb = document.getElementById('random-note-enabled');
+        if (enableCb) {
+            const enabled = settings.randomNoteEnabled !== undefined
+                ? settings.randomNoteEnabled
+                : window.synthEngine.getRandomNoteEnabled(channelNumber);
+            enableCb.checked = enabled;
+            window.synthEngine.setRandomNoteEnabled(channelNumber, enabled);
+        }
+        const probSlider = document.getElementById('random-note-prob');
+        if (probSlider) {
+            const prob = settings.randomNoteProbability !== undefined
+                ? settings.randomNoteProbability
+                : window.synthEngine.getRandomNoteProbability(channelNumber);
+            probSlider.value = prob;
+            window.synthEngine.setRandomNoteProbability(channelNumber, prob);
+            this.updateDisplayValue('random-note-prob');
+        }
+        this.updateRandomNoteButtons();
     }
 
     updateChannelSettings() {

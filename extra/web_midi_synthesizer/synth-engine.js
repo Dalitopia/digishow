@@ -146,15 +146,32 @@ class SynthEngine {
     }
 
     getChannelSettings(channel) {
-        if (this.channels.has(channel)) {
-            return this.channels.get(channel).getSettings();
-        }
-        return null;
+        if (!this.channels.has(channel)) return null;
+        return {
+            ...this.channels.get(channel).getSettings(),
+            randomNoteMask: this.randomNoteMasks[channel],
+            randomNoteEnabled: this.randomNoteEnabled[channel],
+            randomNoteProbability: this.randomNoteProbability[channel]
+        };
     }
 
     updateChannelSettings(channel, settings) {
-        if (this.channels.has(channel)) {
-            this.channels.get(channel).updateSettings(settings);
+        if (!this.channels.has(channel) || !settings) return;
+        const {
+            randomNoteMask,
+            randomNoteEnabled,
+            randomNoteProbability,
+            ...channelSettings
+        } = settings;
+        this.channels.get(channel).updateSettings(channelSettings);
+        if (randomNoteMask !== undefined) {
+            this.setRandomNoteMask(channel, randomNoteMask);
+        }
+        if (randomNoteEnabled !== undefined) {
+            this.setRandomNoteEnabled(channel, randomNoteEnabled);
+        }
+        if (randomNoteProbability !== undefined) {
+            this.setRandomNoteProbability(channel, randomNoteProbability);
         }
     }
 

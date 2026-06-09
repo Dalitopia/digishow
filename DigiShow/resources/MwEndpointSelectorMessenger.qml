@@ -37,6 +37,7 @@ Item {
         anchors.rightMargin: buttonSave.visible ? 70 : 0
         anchors.top: parent.top
         text: ""
+        input.anchors.rightMargin: 30
         onTextEdited: isModified = true
     }
 

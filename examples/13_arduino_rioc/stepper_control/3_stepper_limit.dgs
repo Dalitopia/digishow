@@ -1,0 +1,337 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7.1"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "address": "0",
+                    "enabled": true,
+                    "name": "press4",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "control": 1,
+                    "enabled": true,
+                    "name": "preset1",
+                    "type": "preset"
+                },
+                {
+                    "channel": 21,
+                    "control": 1,
+                    "enabled": true,
+                    "name": "preset2",
+                    "type": "preset"
+                },
+                {
+                    "channel": 22,
+                    "control": 1,
+                    "enabled": true,
+                    "name": "preset3",
+                    "type": "preset"
+                }
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "name": "binary1",
+                    "type": "binary"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "stepper_out1",
+                    "optMode": 1,
+                    "optPosition": 0,
+                    "optSpeed": 1000,
+                    "range": 10000,
+                    "type": "stepper_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 2,
+                    "control": 2,
+                    "enabled": true,
+                    "name": "stepper_set1",
+                    "type": "stepper_set",
+                    "unit": 1
+                },
+                {
+                    "channel": 2,
+                    "control": 3,
+                    "enabled": true,
+                    "name": "stepper_set3",
+                    "type": "stepper_set",
+                    "unit": 1
+                },
+                {
+                    "channel": 8,
+                    "enabled": true,
+                    "name": "digital_in1",
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 2,
+                    "control": 1,
+                    "enabled": true,
+                    "name": "stepper_set2",
+                    "range": 10000,
+                    "type": "stepper_set",
+                    "unit": 1
+                },
+                {
+                    "channel": 9,
+                    "enabled": true,
+                    "name": "digital_in2",
+                    "type": "digital_in",
+                    "unit": 1
+                }
+            ],
+            "mode": "arduino_uno",
+            "name": "rioc1",
+            "outputInterval": 20,
+            "type": "rioc"
+        }
+    ],
+    "launches": {
+        "launch1": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "Go to 0"
+        },
+        "launch2": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "Go to 5000"
+        },
+        "launch21": {
+            "assigned": true,
+            "color": "#ed1b74",
+            "title": "Set Lower Position"
+        },
+        "launch22": {
+            "assigned": true,
+            "color": "#ed1b74",
+            "title": "Set Upper Position"
+        },
+        "launch3": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "Go to 10000"
+        }
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "rioc1/stepper_out1",
+            "launchDetails": {
+                "launch1": {
+                    "outputRange": 10000,
+                    "outputValue": 0
+                },
+                "launch2": {
+                    "outputRange": 10000,
+                    "outputValue": 5000
+                },
+                "launch21": {
+                },
+                "launch22": {
+                },
+                "launch3": {
+                    "outputRange": 10000,
+                    "outputValue": 10000
+                }
+            },
+            "linked": true,
+            "title": "Change Target Position"
+        },
+        {
+            "destination": "rioc1/stepper_set1",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch21": {
+                },
+                "launch22": {
+                },
+                "launch3": {
+                }
+            },
+            "linked": true,
+            "title": "Chage Speed"
+        },
+        {
+            "destination": "rioc1/stepper_set3",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch21": {
+                },
+                "launch22": {
+                },
+                "launch3": {
+                }
+            },
+            "linked": true,
+            "source": "hotkey1/press4",
+            "title": "Stop"
+        },
+        {
+            "bookmarked": true,
+            "launchDetails": {
+                "launch21": {
+                },
+                "launch22": {
+                }
+            },
+            "linked": true,
+            "title": "Limit Switches"
+        },
+        {
+            "destination": "rioc1/stepper_set2",
+            "launchDetails": {
+                "launch21": {
+                    "outputRange": 10000,
+                    "outputValue": 0
+                },
+                "launch22": {
+                    "outputRange": 10000,
+                    "outputValue": 10000
+                }
+            },
+            "linked": true,
+            "title": "Set Position"
+        },
+        {
+            "destination": "launch1/preset2",
+            "envelopeInDelay": 0,
+            "inputInverted": true,
+            "launchDetails": {
+                "launch21": {
+                },
+                "launch22": {
+                }
+            },
+            "linked": true,
+            "source": "rioc1/digital_in1",
+            "title": "Lower Limit Switch"
+        },
+        {
+            "destination": "launch1/preset3",
+            "envelopeInDelay": 0,
+            "inputInverted": true,
+            "launchDetails": {
+                "launch21": {
+                },
+                "launch22": {
+                }
+            },
+            "linked": true,
+            "source": "rioc1/digital_in2",
+            "title": "Upper Limit Switch"
+        },
+        {
+            "bookmarked": true,
+            "launchDetails": {
+                "launch21": {
+                },
+                "launch22": {
+                }
+            },
+            "linked": true,
+            "title": "Initial Positioning"
+        },
+        {
+            "destination": "launch1/preset3",
+            "envelopeHold": 500,
+            "envelopeInDelay": 2000,
+            "launchDetails": {
+                "launch21": {
+                },
+                "launch22": {
+                }
+            },
+            "linked": true,
+            "source": "pipe1/binary1",
+            "title": "1: Set to Upper Position"
+        },
+        {
+            "destination": "launch1/preset1",
+            "envelopeHold": 500,
+            "envelopeInDelay": 3000,
+            "launchDetails": {
+                "launch21": {
+                },
+                "launch22": {
+                }
+            },
+            "linked": true,
+            "source": "pipe1/binary1",
+            "title": "2: Move to Lower Position"
+        }
+    ]
+}

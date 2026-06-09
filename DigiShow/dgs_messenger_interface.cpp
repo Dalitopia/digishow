@@ -254,7 +254,7 @@ void DgsMessengerInterface::updateMetadata_()
         break;
     case INTERFACE_MESSENGER_UDP_IN:
         labelType = tr("UDP");
-        labelIdentity = m_interfaceOptions.value("udpPort").toString();
+        labelIdentity = ":" + m_interfaceOptions.value("udpPort").toString();
         break;
     case INTERFACE_MESSENGER_UDP_OUT:
         labelType = tr("UDP");

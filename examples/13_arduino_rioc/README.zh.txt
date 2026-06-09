@@ -6,3 +6,6 @@ arduino_uno.dgs
 
 aladdin_micro.dgs
 在 Aladdin Micro 板子上写入 RIOC 程序后，即可运行此 DigiShow 项目来完成最简单的测试。 启动后，板载输出信号指示灯将显现循环亮灭的流光效果。
+
+stepper_control
+用多个示例来介绍如何使用 DigiShow 控制步进电机的运动。

@@ -1,0 +1,264 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7.1"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "timecode1",
+                    "range": 10000000,
+                    "type": "timecode"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "timecode2",
+                    "range": 2000000,
+                    "type": "timecode"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "timecode3",
+                    "range": 100000,
+                    "type": "timecode"
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "name": "value1",
+                    "optAmplitude": 1,
+                    "optFunction": "sawtooth",
+                    "optPeriod": 1000,
+                    "optPhase": 0,
+                    "optRun": true,
+                    "optSample": 20,
+                    "range": 10000,
+                    "type": "value"
+                }
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "binary1",
+                    "type": "binary"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "name": "analog1",
+                    "range": 10000000,
+                    "type": "analog"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 15,
+                    "enabled": true,
+                    "media": "image1",
+                    "name": "media2",
+                    "type": "media"
+                },
+                {
+                    "control": 11,
+                    "enabled": true,
+                    "media": "image1",
+                    "name": "media3",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "media": "image1",
+                    "mediaAlone": false,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 800,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 10000,
+                    "name": "media10",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "media": "image2",
+                    "mediaAlone": false,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 1500,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 3000,
+                    "name": "media12",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/apple.png",
+                    "name": "image1",
+                    "type": "image",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/15_lfo/clips/apple.png"
+                },
+                {
+                    "file": "clips/isaac.png",
+                    "name": "image2",
+                    "type": "image",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/15_lfo/clips/isaac.png"
+                }
+            ],
+            "mode": "",
+            "name": "screen1",
+            "screen": -1,
+            "type": "screen"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/analog1",
+            "inputExpression": "0.5 * 9.81 * value * value / 1000",
+            "inputHigh": 1,
+            "inputInverted": false,
+            "inputLow": 0,
+            "linked": true,
+            "outputExpression": "value",
+            "outputInverted": true,
+            "outputSmoothing": 0,
+            "source": "lfo1/timecode1",
+            "title": "Free Fall Distance (mm)"
+        },
+        {
+            "inputExpression": "9.81 * value * 3.6",
+            "linked": true,
+            "source": "lfo1/timecode2",
+            "title": "Free Fall Velocity (m/h)"
+        },
+        {
+            "linked": true,
+            "source": "lfo1/timecode3",
+            "title": "Elapsed Time (msec)"
+        },
+        {
+            "destination": "screen1/media3",
+            "inputExpression": "range - Math.log(value)*1000",
+            "inputHigh": 0.4,
+            "inputInverted": false,
+            "linked": true,
+            "outputHigh": 1,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "outputSmoothing": 0,
+            "source": "lfo1/value1",
+            "title": "Apple Heartbeat"
+        },
+        {
+            "destination": "screen1/media2",
+            "inputInverted": false,
+            "linked": true,
+            "outputHigh": 0.68,
+            "outputInverted": false,
+            "outputLow": 0.41,
+            "outputSmoothing": 0,
+            "source": "pipe1/analog1",
+            "title": "Apple Movement"
+        },
+        {
+            "destination": "pipe1/binary1",
+            "inputHigh": 0,
+            "inputLow": 0,
+            "linked": true,
+            "outputExpression": "if (value) { alert(\"System Crashed 🛩️🍎💥🙃!!\"); app.stop(); }; value",
+            "source": "pipe1/analog1",
+            "title": "Crash Alert"
+        },
+        {
+            "destination": "screen1/media10",
+            "linked": true,
+            "title": "Load Apple"
+        },
+        {
+            "destination": "screen1/media12",
+            "linked": true,
+            "title": "Load Issac"
+        }
+    ]
+}
