@@ -1205,7 +1205,7 @@ Please try again with the latest version of the application.</source>
     <message>
         <location filename="../MainWindow.qml" line="374"/>
         <source>https://github.com/robinz-labs/digishow/releases/latest</source>
-        <translation>http://cdn.digishow.cn/download.html</translation>
+        <translation>https://web.archive.org/web/20260619040459/http://cdn.digishow.cn/download.html</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="379"/>
