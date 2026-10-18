@@ -1116,8 +1116,8 @@ Please try again with the latest version of the application.</source>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="369"/>
-        <source>https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md</source>
-        <translation>http://cdn.digishow.cn</translation>
+        <source>https://github.com/Dalitopia/digishow/blob/master/guides/tutorials.md</source>
+        <translation>https://cdn.digishow.cn/tutorials/</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="947"/>
