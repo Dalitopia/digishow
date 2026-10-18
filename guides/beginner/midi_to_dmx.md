@@ -36,4 +36,4 @@ Click the 'Select Destination' drop-down menu, select DMX in it, set the output 
 
 7. And, add more signal links in this way. 
 
-For more learning, please read  [TUTORIALS](https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md) 
+For more learning, please read  [TUTORIALS](../tutorials.md) 

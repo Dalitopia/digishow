@@ -1,6 +1,6 @@
 # DigiShow LINK  
 
-[下载](https://github.com/robinz-labs/digishow/releases/latest) | [教程](https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md) |  [YOUTUBE](https://www.youtube.com/watch?v=XFE75XyCr3k)
+[下载](https://github.com/robinz-labs/digishow/releases/latest) | [教程](guides/tutorials.zh_CN.md) |  [YOUTUBE](https://www.youtube.com/watch?v=XFE75XyCr3k)
 
 DigiShow 是一款专为现场演出和互动艺术装置设计的轻量级跨媒体控制软件。它提供了直观的控制台界面，支持各类音频、灯光、机械装置及互动设备之间的信号控制与映射。
 
