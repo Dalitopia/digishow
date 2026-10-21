@@ -1404,7 +1404,7 @@ Item {
     function expressionHelp(textExpression) {
 
         function expressionReference() {
-            Qt.openUrlExternally("https://github.com/robinz-labs/digishow/blob/master/guides/" + qsTr("expression.md"))
+            Qt.openUrlExternally("https://github.com/Dalitopia/digishow/blob/master/guides/" + qsTr("expression.md"))
         }
 
         var exampleCode = "value*0.5 + 100"

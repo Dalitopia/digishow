@@ -36,4 +36,4 @@
 
 7. 按照此方法添加更多信号链接。 
 
-获取更多学习资料, 请访问 [digishow.cn](https://cdn.digishow.cn) 
+获取更多学习资料, 请访问 [digishow.cn](https://cdn.digishow.cn/tutorials/) 

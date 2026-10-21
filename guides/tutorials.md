@@ -3,7 +3,7 @@
 We provide a concise tutorial for you to learn how to use DigiShow, which covers almost all the common and unique functions of the software. 
 You can use your web browser to open and view the PDF content of each chapter, or you can download them to your computer disk for easy reference at any time. 
 
-Open the page at https://digishow.cc 
+Open the page at https://digishow.cc/tutorials 
 
 **1 Basic Concepts** 
 - Learn what DigiShow is and what you can do with it.

@@ -52,4 +52,4 @@ Thus, a live performance lighting console or an interactive art installation is 
 
 After completing this experiment, you can continue to explore more signal types and conversion parameters during signal mapping. For example, you can try setting the signal bar's output end to "Audio Player" and adding a synchronized sound to your scene. 
 
-For more learning, please read  [TUTORIALS](https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md) 
+For more learning, please read  [TUTORIALS](../tutorials.md) 

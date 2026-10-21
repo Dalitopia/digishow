@@ -52,4 +52,4 @@
 
 完成这个实验之后，你还可以继续探索更多的信号类型和信号映射时的转换参数。比如你可以尝试把信号条输出端设为“音频播放器”，就能在你的场景节目中加入同步音效。 
 
-获取更多学习资料, 请访问 [digishow.cn](https://cdn.digishow.cn) 
+获取更多学习资料, 请访问 [digishow.cn](https://cdn.digishow.cn/tutorials/) 

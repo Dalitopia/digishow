@@ -1,6 +1,6 @@
 # DigiShow LINK  
   
-[DOWNLOAD](https://github.com/robinz-labs/digishow/releases/latest) | [TUTORIALS](https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md) | [YOUTUBE](https://www.youtube.com/watch?v=XFE75XyCr3k)
+[DOWNLOAD](https://github.com/robinz-labs/digishow/releases/latest) | [TUTORIALS](guides/tutorials.md) | [YOUTUBE](https://www.youtube.com/watch?v=XFE75XyCr3k)
   
 DigiShow is a lightweight cross-media control software designed for live performances and interactive art installations. It provides an intuitive console interface that enables signal control and mapping among various audio, lighting, robotic, and interactive devices. 
 

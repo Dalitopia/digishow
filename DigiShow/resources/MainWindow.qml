@@ -366,7 +366,7 @@ ApplicationWindow {
                     }
                     MenuItem {
                         text: qsTr("Tutorials ...")
-                        onTriggered: Qt.openUrlExternally(qsTr("https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md"))
+                        onTriggered: Qt.openUrlExternally(qsTr("https://github.com/Dalitopia/digishow/blob/master/guides/tutorials.md"))
 
                     }
                     MenuItem {

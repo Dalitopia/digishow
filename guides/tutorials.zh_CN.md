@@ -2,7 +2,7 @@
 
 我们为你学习使用 DigiShow 提供了一个简明的教程，它几乎涵盖了所有关于该软件的常用和有特色的功能。你用可以用你的浏览器来打开查看各章节的PDF内容，也可以把它们下载到你电脑硬盘上以备随时查阅。
 
-更多中文资源见 https://digishow.cn
+更多中文资源见 https://cdn.digishow.cn/tutorials/
 
 **1 基本概念** 
 - 了解 DigiShow 是什么，你可以用它来做什么
@@ -61,4 +61,4 @@
 - [阅读 PDF](https://digishow.cc/digishow/tutorials/learning-digishow-cn/DigiShow%20%e6%95%99%e7%a8%8b8%20%e8%a1%a8%e8%be%be%e5%bc%8f%e5%92%8c%e8%84%9a%e6%9c%ac.pdf) 
 
 
-( 另可下载本教程配套实例 https://digishow.cc/digishow/tutorials/learning-digishow-examples.zip ) 
+( 另可下载本教程配套实例 https://digishow.cc/digishow/tutorials/learning-digishow-examples.zip )
